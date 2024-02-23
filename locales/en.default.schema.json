@@ -958,6 +958,36 @@
         "name": "Featured product"
       }
     },
+    "best-sellers": {
+      "name": "Best sellers",
+      "blocks": {
+        "text": {
+          "name": "Text",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "title": {
+          "name": "Title"
+        }
+      },
+      "settings": {
+        "Heading": "Heading",
+        "text": "Description",
+        "product": {
+          "label": "Product"
+        },
+        "button": {
+          "label": "Button label",
+          "url": "Button url"
+        }
+      },
+      "presets": {
+        "name": "Best sellers"
+      }
+    },
     "footer": {
       "name": "Footer",
       "blocks": {
