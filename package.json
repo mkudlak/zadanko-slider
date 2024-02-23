@@ -1,0 +1,20 @@
+{
+  "name": "shopify-zadanie-slider",
+  "version": "1.0.0",
+  "description": "## Dynamiczny Slider Najlepiej Sprzedających się Produktów na Stronie Produktu.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.2.5"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "node-sass": "^9.0.0",
+    "sass": "^1.71.1"
+  }
+}

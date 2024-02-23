@@ -9,15 +9,11 @@ oglądany produkt. Slider powinien być responsywny, zgodny z dostarczonym
 designem i łatwy do zarządzania z panelu administracyjnego Shopify.
 
 ### Wymagania Techniczne:
-● HTML, SCSS, JavaScript (z użyciem SwiperJS): Implementacja
-responsywnego slidera zgodnie z najlepszymi praktykami front-endowymi,
-wykorzystując SwiperJS dla płynnej animacji i obsługi dotyku/swipe na
-urządzeniach mobilnych.
-● Liquid & Shopify API: Dynamiczne generowanie treści slidera, wykorzystując
-Liquid do pobierania najlepiej sprzedających się produktów z tej samej
-kategorii co oglądany produkt.
-● Optymalizacja Wydajności: Implementacja technik optymalizacji
-wydajności, takich jak lazy loading dla obrazów produktów.
+1. HTML, SCSS, JavaScript (z użyciem SwiperJS): Implementacja responsywnego slidera zgodnie z najlepszymi praktykami front-endowymi,
+wykorzystując SwiperJS dla płynnej animacji i obsługi dotyku/swipe na urządzeniach mobilnych.
+2. Liquid & Shopify API: Dynamiczne generowanie treści slidera, wykorzystując
+Liquid do pobierania najlepiej sprzedających się produktów z tej samej kategorii co oglądany produkt.
+3. Optymalizacja Wydajności: Implementacja technik optymalizacji wydajności, takich jak lazy loading dla obrazów produktów.
 
 ### Zadania:
 1. Wykrywanie Kategorii Aktualnego Produktu:
