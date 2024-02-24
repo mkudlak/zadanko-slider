@@ -1,0 +1,53 @@
+.swiper-button-next, .swiper-button-prev {
+  border: 1px solid #EDEDED;
+  position: absolute;
+  background-color: #fff;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+@media screen and (min-width: 990px) {
+  .swiper-button-next, .swiper-button-prev {
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border 0.5s ease-in-out;
+  }
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+.swiper-button-next.swiper-button-hidden, .swiper-button-prev.swiper-button-hidden {
+  opacity: 0;
+  cursor: auto;
+  pointer-events: none;
+}
+.swiper-button-next svg, .swiper-button-prev svg {
+  width: 8px;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center;
+}
+
+.swiper-button-prev {
+  transform: rotate(180deg);
+}
+
+.swiper-navigation-disabled .swiper-button-next, .swiper-navigation-disabled .swiper-button-prev {
+  display: none !important;
+}
+
+.swiper-button-lock {
+  display: none;
+}

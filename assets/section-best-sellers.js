@@ -3,23 +3,19 @@ if (!customElements.get('best-sellers')) {
     constructor() {
       super()
 
-      let bestsellers = this.querySelectorAll('.swiper-slide')
-
+      let bestsellers = this.querySelectorAll('.swiper');
       if (bestsellers.length <= 4) {
         this.querySelector('.js-slider').classList.add('no-slider-arrows')
       }
 
-      let splide = new Splide(this.querySelector('.js-slider'), {
-        rewind: true,
-        slideFocus: false,
-        pagination: false,
-        arrows: true,
-        perPage: 3,
-        breakpoints: {
-          989: { perPage: 2 },
-          768: { perPage: 2 },
-          640: { perPage: 1 },
-        },
+      new Swiper(this.querySelector('.js-slider'), {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        grabCursor: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+      },
       })
     }
   }

@@ -1,0 +1,69 @@
+$color-black: #000;
+$color-white: #fff;
+$color-gallery: #EDEDED;
+
+// Transitions
+$trans-speed: .5s;
+$trans-func: ease-in-out;
+$transition: $trans-speed $trans-func;
+
+.swiper-button-next,.swiper-button-prev {
+	border: 1px solid $color-gallery;
+    position: absolute;
+	background-color: $color-white;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+	border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	color: $color-black;
+
+	@media screen and (min-width: 990px) {
+		transition: background-color $transition, color $transition, border $transition;
+	}
+
+	&:hover {
+		background-color: $color-black;
+		color: $color-white;
+		border-color: $color-black;
+	}
+
+	&::after {
+		//content: none;
+	}
+
+	&.swiper-button-disabled {
+		opacity: .35;
+		cursor: auto;
+		pointer-events: none
+	}
+
+	&.swiper-button-hidden {
+		opacity: 0;
+		cursor: auto;
+		pointer-events: none
+	}
+
+	svg {
+		width: 8px;
+		height: auto;
+		object-fit: contain;
+		transform-origin: center
+	}
+}
+
+.swiper-button-prev {
+	transform: rotate(180deg);
+}
+
+.swiper-navigation-disabled .swiper-button-next,.swiper-navigation-disabled .swiper-button-prev {
+    display: none!important
+}
+
+.swiper-button-lock {
+    display: none
+}

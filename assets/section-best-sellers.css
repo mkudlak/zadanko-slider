@@ -1,3 +1,12 @@
-body {
-  background-color: red;
+.best-sellers__slider-wrapper {
+  margin: 0 auto;
+}
+@media screen and (min-width: 1200px) {
+  .best-sellers__slider-wrapper {
+    padding-left: 50px;
+    margin-left: calc((100vw - 1215px) / 2);
+  }
+}
+.best-sellers__slider {
+  overflow: revert;
 }

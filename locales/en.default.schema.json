@@ -961,27 +961,13 @@
     "best-sellers": {
       "name": "Best sellers",
       "blocks": {
-        "text": {
-          "name": "Text",
-          "settings": {
-            "text": {
-              "label": "Text"
-            }
-          }
-        },
-        "title": {
-          "name": "Title"
-        }
+        "name": "Product"
       },
       "settings": {
-        "Heading": "Heading",
+        "heading": "Heading",
         "text": "Description",
         "product": {
           "label": "Product"
-        },
-        "button": {
-          "label": "Button label",
-          "url": "Button url"
         }
       },
       "presets": {

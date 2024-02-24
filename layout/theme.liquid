@@ -34,8 +34,6 @@
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    {{ 'swiper.min.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'swiper.min.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
 

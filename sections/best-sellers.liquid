@@ -1,70 +1,44 @@
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'section-best-sellers.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+{{ 'variables-task.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider-swiper.css' | asset_url | stylesheet_tag }}
+{{ 'section-best-sellers.css' | asset_url | stylesheet_tag }}
 
-<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'section-best-sellers.css' | asset_url | stylesheet_tag }}</noscript>
-
+<script src="{{ 'swiper.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'section-best-sellers.js' | asset_url }}" defer></script>
 
-<best-seller class="best-sellers">
+<best-sellers class="best-sellers">
   <div class="page-width">
     <div class="best-sellers__header">
       <div class="best-sellers__heading">
         {%- if section.settings.headline != blank -%}
           <h2 class="best-sellers__title">{{ section.settings.headline }}</h2>
         {%- endif -%}
-        {%- if section.settings.text != blank -%}
-          <p class="best-sellers__text body--large">{{ section.settings.text }}</p>
-        {%- endif -%}
-      </div>
-      {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
-        <div class="best-sellers__btn__wrapper best-sellers__btn__wrapper-desktop">
-          <a href="{{ section.settings.button_url }}" class="btn btn-primary">{{ section.settings.button_label }}</a>
-        </div>
-      {%- endif -%}
-    </div>
-  </div>
-  <div class="top-sellerc__slider-wrapper">
-   <div class="best-sellers__slider splide js-slider">
-      <div class="splide__track">
-        <ul class="best-sellers__splide__list splide__list"  role="list">
-          {% if section.settings.button_url != blank %}
-            {%- for block in section.blocks -%}
-              {%- assign product = block.settings.product -%}
-              <li class="best-sellers__splide__slide splide__slide" tabindex="-1">
-                {% render 'product-card',
-                  product_card_product: product,
-                %}
-              </li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
-
-      <div class="splide-progress slider-best-sellers-progress">
-        <div class="splide-progress-bar slider-best-sellers-progress-bar js-progesss-bar"></div>
-      </div>
-      <div class="splide__arrows">
-        <button class="splide__arrow splide__arrow--prev" type="button" aria-controls="splide02-track" aria-label="Go to last slide">
-          {% render 'icon-prev-slider' %}
-        </button>
-        <button class="splide__arrow splide__arrow--next" type="button" aria-controls="splide02-track" aria-label="Next slide">
-          {% render 'icon-next-slider' %}
-        </button>
       </div>
     </div>
-    {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
-        <div class="best-sellers__btn__wrapper best-sellers__btn__wrapper-mobile">
-          <a href="{{ section.settings.button_url }}" class="btn btn-primary">{{ section.settings.button_label }}</a>
-        </div>
-    {%- endif -%}
-
-
-
   </div>
-</best-seller>
+  <div class="best-sellers__slider-wrapper">
+   <div class="best-sellers__slider swiper js-slider">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <div class="best-sellers__slide swiper-slide">
+            {% render 'card-product',
+                card_product: block.settings.product,
+                media_aspect_ratio: 'square',
+                image_shape: 'default',
+                show_secondary_image: true,
+                show_vendor: false,
+                show_rating: false
+            %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</best-sellers>
 
 {% schema %}
 {
@@ -77,22 +51,6 @@
       "id": "headline",
       "default": "Best sellery",
       "label": "t:sections.best-sellers.settings.heading"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "t:sections.best-sellers.settings.text"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "View all",
-      "label": "t:sections.best-sellers.settings.button_label"
-    },
-    {
-      "type": "url",
-      "id": "button_url",
-      "label": "t:sections.best-sellers.settings.button_url"
     }
   ],
   "blocks": [
