@@ -1,3 +1,6 @@
+.best-sellers__wrapper.hide {
+  opacity: 0;
+}
 .best-sellers__slider-wrapper {
   margin: 0 auto;
 }

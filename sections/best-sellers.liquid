@@ -9,48 +9,51 @@
 <script src="{{ 'section-best-sellers.js' | asset_url }}" defer></script>
 
 <best-sellers class="best-sellers">
-  <div class="page-width">
-    {% if template == 'product' %}
-      {% assign current_product = product %}
-      {% if current_product.collections.size > 0 %}
-        <p>Produkt należy do kolekcji:</p>
-        <ul>
-          {% for collection in current_product.collections %}
-            <li>{{ collection.title }}</li>
-          {% endfor %}
-        </ul>
-        <div id="collectionTitles" data-collections="{% for collection in current_product.collections %}{{ collection.title | escape | downcase }},{% endfor %}"></div>
-      {% else %}
-        <p>Ten produkt nie należy do żadnej kolekcji.</p>
+  <div class="best-sellers__wrapper hide">
+    <div class="page-width">
+      {% if template == 'product' %}
+        {% assign current_product = product %}
+        {% if current_product.collections.size > 0 %}
+          <p>Produkt należy do kolekcji:</p>
+          <ul>
+            {% for collection in current_product.collections %}
+              <li>{{ collection.title }}</li>
+            {% endfor %}
+          </ul>
+          <div id="product-id" data-product-id="{{ current_product.id }}"></div>
+          <div id="collectionTitles" data-collections="{% for collection in current_product.collections %}{{ collection.title | escape | downcase }},{% endfor %}"></div>
+        {% else %}
+          <p>Ten produkt nie należy do żadnej kolekcji.</p>
+        {% endif %}
       {% endif %}
-    {% endif %}
-    <br>
-    <div class="best-sellers__header">
-      <div class="best-sellers__heading">
-        {%- if section.settings.headline != blank -%}
-          <h2 class="best-sellers__title">{{ section.settings.headline }}</h2>
-        {%- endif -%}
+      <br>
+      <div class="best-sellers__header">
+        <div class="best-sellers__heading">
+          {%- if section.settings.headline != blank -%}
+            <h2 class="best-sellers__title">{{ section.settings.headline }}</h2>
+          {%- endif -%}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="best-sellers__slider-wrapper">
-   <div class="best-sellers__slider swiper js-slider">
-      <div class="swiper-wrapper">
-        {%- for block in section.blocks -%}
-          <div class="best-sellers__slide swiper-slide">
-            {% render 'card-product',
-                card_product: block.settings.product,
-                media_aspect_ratio: 'square',
-                image_shape: 'default',
-                show_secondary_image: true,
-                show_vendor: false,
-                show_rating: false
-            %}
-          </div>
-        {% endfor %}
+    <div class="best-sellers__slider-wrapper">
+     <div class="best-sellers__slider swiper js-slider">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="best-sellers__slide swiper-slide">
+              {% render 'card-product',
+                  card_product: block.settings.product,
+                  media_aspect_ratio: 'square',
+                  image_shape: 'default',
+                  show_secondary_image: true,
+                  show_vendor: false,
+                  show_rating: false
+              %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next">{% render 'icon-next-slider' %}</div>
+        <div class="swiper-button-prev">{% render 'icon-next-slider' %}</div>
       </div>
-      <div class="swiper-button-next">{% render 'icon-next-slider' %}</div>
-      <div class="swiper-button-prev">{% render 'icon-next-slider' %}</div>
     </div>
   </div>
 </best-sellers>

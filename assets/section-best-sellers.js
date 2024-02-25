@@ -1,7 +1,10 @@
 if (!customElements.get('best-sellers')) {
   class BestSellers extends HTMLElement {
     constructor() {
-      super()
+      super();
+
+      const bestsellersWrapper = this.querySelector('.best-sellers__wrapper');
+      const productID = this.querySelector('#product-id').getAttribute('data-product-id');
 
       let bestsellers = this.querySelectorAll('.swiper');
       let bestsellersSwiperWrapper = this.querySelector('.swiper-wrapper');
@@ -58,6 +61,11 @@ if (!customElements.get('best-sellers')) {
         const index = from.indexOf(letter);
         return index !== -1 ? to[index] : letter;
       }).join('');
+    };
+
+    const extractNumericId = (globalId) => {
+      const idParts = globalId.split('/');
+      return idParts[idParts.length - 1];
     };
 
     const handles = replacePolishChars(collectionTitlesData).split(',').filter(Boolean);
@@ -123,24 +131,38 @@ if (!customElements.get('best-sellers')) {
 
     fetchAllProducts()
       .then(allProducts => {
+        const displayedProducts = {};
+
         allProducts.forEach(({ handle, products }) => {
           products.forEach(({node: product}) => {
-            const firstVariant = product.variants.edges[0]?.node;
-            const productData = {
-              id: product.id,
-              title: product.title,
-              onlineStoreUrl: `https://${window.Shopify.shop}/products/${product.handle}`,
-              image: {
-                url: product.featuredImage?.url || ''
-              },
-              price: product.priceRange.minVariantPrice.amount,
-              currencyCode: product.priceRange.minVariantPrice.currencyCode,
-              compareAtPrice: firstVariant.compareAtPriceV2 ? firstVariant.compareAtPriceV2.amount : null,
-              compareAtPriceCurrencyCode: firstVariant.compareAtPriceV2 ? firstVariant.compareAtPriceV2.currencyCode : null
+            const numericProductId = extractNumericId(product.id);
+            console.log('numericProductId ', numericProductId);
+            console.log('productID ', productID);
+            if (!displayedProducts[product.id] && numericProductId !== productID) {
+              console.log('displayedProducts[product.id] ', displayedProducts[product.id]);
+              console.log('currentProductId ', productID);
+              console.log('product.id ', product.id);
+              bestsellersWrapper.classList.remove('hide');
+              const firstVariant = product.variants.edges[0]?.node;
+              const productData = {
+                id: product.id,
+                title: product.title,
+                onlineStoreUrl: `https://${window.Shopify.shop}/products/${product.handle}`,
+                image: {
+                  url: product.featuredImage?.url || ''
+                },
+                price: product.priceRange.minVariantPrice.amount,
+                currencyCode: product.priceRange.minVariantPrice.currencyCode,
+                compareAtPrice: firstVariant.compareAtPriceV2 ? firstVariant.compareAtPriceV2.amount : null,
+                compareAtPriceCurrencyCode: firstVariant.compareAtPriceV2 ? firstVariant.compareAtPriceV2.currencyCode : null
+              };
+              renderProductCard(productData);
+
+              displayedProducts[product.id] = true;
             };
-            renderProductCard(productData);
           });
           products.forEach(product => {
+            console.log('handle:', product.handle);
             console.log('Product ID:', product.node.id);
             console.log('Title:', product.node.title);
             console.log('------------------------------------');
