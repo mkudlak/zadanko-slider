@@ -98,34 +98,8 @@
     },
     "best_sellers_BfDERn": {
       "type": "best-sellers",
-      "blocks": {
-        "product_eVbCaK": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_nJmxUH": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_Xw93T9": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_eVbCaK",
-        "product_nJmxUH",
-        "product_Xw93T9"
-      ],
       "settings": {
         "headline": "Best sellery",
-        "text": "",
         "button_label": "View all",
         "button_url": ""
       }
