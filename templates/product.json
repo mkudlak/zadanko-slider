@@ -99,9 +99,9 @@
     "best_sellers_BfDERn": {
       "type": "best-sellers",
       "settings": {
-        "headline": "Best sellery",
-        "button_label": "View all",
-        "button_url": ""
+        "headline": "Polecane dla Ciebie",
+        "button_label": "Zobacz wszystkie",
+        "button_url": "shopify:\/\/collections"
       }
     }
   },
