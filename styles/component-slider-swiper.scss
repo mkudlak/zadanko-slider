@@ -33,11 +33,11 @@ $transition: $trans-speed $trans-func;
 	}
 
 	&::after {
-		//content: none;
+		content: none;
 	}
 
 	&.swiper-button-disabled {
-		opacity: .35;
+		opacity: 0;
 		cursor: auto;
 		pointer-events: none
 	}

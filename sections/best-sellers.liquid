@@ -10,6 +10,21 @@
 
 <best-sellers class="best-sellers">
   <div class="page-width">
+    {% if template == 'product' %}
+      {% assign current_product = product %}
+      {% if current_product.collections.size > 0 %}
+        <p>Produkt należy do kolekcji:</p>
+        <ul>
+          {% for collection in current_product.collections %}
+            <li>{{ collection.title }}</li>
+          {% endfor %}
+        </ul>
+        <div id="collectionTitles" data-collections="{% for collection in current_product.collections %}{{ collection.title | escape | downcase }},{% endfor %}"></div>
+      {% else %}
+        <p>Ten produkt nie należy do żadnej kolekcji.</p>
+      {% endif %}
+    {% endif %}
+    <br>
     <div class="best-sellers__header">
       <div class="best-sellers__heading">
         {%- if section.settings.headline != blank -%}
@@ -34,8 +49,8 @@
           </div>
         {% endfor %}
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next">{% render 'icon-next-slider' %}</div>
+      <div class="swiper-button-prev">{% render 'icon-next-slider' %}</div>
     </div>
   </div>
 </best-sellers>
@@ -51,6 +66,18 @@
       "id": "headline",
       "default": "Best sellery",
       "label": "t:sections.best-sellers.settings.heading"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "View all",
+      "label": "t:sections.best-sellers.settings.button_label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "t:sections.best-sellers.settings.button_label",
+      "info": "t:sections.best-sellers.settings.button_info"
     }
   ],
   "blocks": [
@@ -70,6 +97,15 @@
     {
       "name": "t:sections.best-sellers.name",
       "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
         {
           "type": "product"
         },

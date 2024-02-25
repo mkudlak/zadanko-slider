@@ -966,6 +966,9 @@
       "settings": {
         "heading": "Heading",
         "text": "Description",
+        "button_label": "Button label",
+        "button_url": "Button url",
+        "button_info": "Pozostawione puste będzie pobierało linka do pierwszej kolekcji głównego produktu",
         "product": {
           "label": "Product"
         }
