@@ -27,10 +27,16 @@
         {% endif %}
       {% endif %}
       <br>
+
+      <br>
       <div class="best-sellers__header">
         <div class="best-sellers__heading">
           {%- if section.settings.headline != blank -%}
             <h2 class="best-sellers__title">{{ section.settings.headline }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
+            <div class="best-sellers__buttton-all-wrapper hide-mobile"><a href="{{ section.settings.button_url }}" class="best-sellers__button-all best-sellers__button-all--desktop button button--primary">{{ section.settings.button_label }}</a></div>
           {%- endif -%}
         </div>
       </div>
@@ -51,10 +57,17 @@
             </div>
           {% endfor %}
         </div>
+      </div>
+      <div class="best-sellers__slider-arrows">
         <div class="swiper-button-next">{% render 'icon-next-slider' %}</div>
         <div class="swiper-button-prev">{% render 'icon-next-slider' %}</div>
       </div>
     </div>
+
+    {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
+      <div class="best-sellers__buttton-all-wrapper show-mobile"><a href="{{ section.settings.button_url }}" class="best-sellers__button-all  button button--primary">{{ section.settings.button_label }}</a></div>
+    {%- endif -%}
+
   </div>
 </best-sellers>
 
@@ -79,7 +92,7 @@
     {
       "type": "url",
       "id": "button_url",
-      "label": "t:sections.best-sellers.settings.button_label",
+      "label": "t:sections.best-sellers.settings.button_url",
       "info": "t:sections.best-sellers.settings.button_info"
     }
   ],

@@ -1,19 +1,154 @@
+$color--text-description: #5B5B5B;
+
 .best-sellers {
 	&__wrapper {
+		position: relative;
 		overflow: hidden;
 		margin: 50px 0;
 		&.hide {
 			opacity: 0;
 		}
 	}
+
+	&__heading {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 5px;
+		@media screen and (min-width: 750px) {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	&__title,
+	&__button-all-wrapper {
+		@media screen and (min-width: 990px) {
+			flex: 0 50%;
+			max-width: 50%;
+		}
+	}
+
+	&__buttton-all-wrapper {
+		text-transform: uppercase;
+		@media screen and (max-width: 749px) {
+			padding-left: 15px;
+			padding-right: 15px;
+			margin-top: 36px;
+		}
+	}
+
+	&__button-all {
+		font-size: 12px;
+		line-height: 52px;
+		letter-spacing: 1.8px;
+		padding: 0 20px;
+	}
+
+	&__title {
+		font-weight: 500;
+		font-size: 35px;
+		letter-spacing: -0.7px;
+	}
+
 	&__slider-wrapper {
 		margin: 0 auto;
+		padding-left: 15px;
+
 		@media screen and (min-width: 1200px) {
 			padding-left: 50px;
 			margin-left: calc(( 100vw - 1215px ) / 2 );
 		}
+
+		.product-card {
+			&__info {
+				height: 100%;
+			}
+			&__title,
+			&__description {
+				letter-spacing: -0.7px;
+				font-weight: 500;
+			}
+
+			&__title {
+				font-size: 20px;
+				margin-top: 34px;
+			}
+
+			&__description {
+				color: $color--text-description;
+				font-size: 13px;
+				margin-top: 7px;
+			}
+
+			&__price {
+				margin-top: 39px;
+			}
+
+			&__image-wrapper {
+				img {
+					object-fit: cover;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
 	}
+
 	&__slider {
 		overflow: revert;
+	}
+
+	&__slide.swiper-slide {
+		width: 252px;
+	}
+
+	&__slider-arrows {
+		min-height: 100px;
+		position: absolute;
+		top: calc(50% + 19px);
+		transform: translateY(-50%);
+		z-index: 20;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		@media screen and (min-width: 750px) {
+			max-width: calc(var(--page-width) - 100px);
+			width: 100%;
+		}
+	}
+}
+
+.hide-desktop {
+	@media screen and (min-width: 1200px) {
+		display: none;
+	}
+}
+
+.hide-tablet {
+	@media screen and (max-width: 989px) {
+		display: none;
+	}
+}
+
+.hide-mobile {
+	@media screen and (max-width: 749px) {
+		display: none;
+	}
+}
+
+.show-tablet {
+	display: none;
+
+	@media screen and (max-width: 989px) {
+		display: block;
+	}
+}
+
+.show-mobile {
+	display: none;
+
+	@media screen and (max-width: 749px) {
+		display: block;
 	}
 }

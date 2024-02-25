@@ -15,7 +15,7 @@
 }
 @media screen and (min-width: 990px) {
   .swiper-button-next, .swiper-button-prev {
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
 }
 .swiper-button-next:hover, .swiper-button-prev:hover {

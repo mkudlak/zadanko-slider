@@ -23,7 +23,7 @@ $transition: $trans-speed $trans-func;
 	color: $color-black;
 
 	@media screen and (min-width: 990px) {
-		transition: background-color $transition, color $transition, border $transition;
+		transition: background-color $transition, color $transition, border $transition, opacity $transition;
 	}
 
 	&:hover {
