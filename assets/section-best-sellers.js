@@ -8,6 +8,7 @@ if (!customElements.get('best-sellers')) {
 
       let bestsellers = this.querySelectorAll('.swiper');
       let bestsellersSwiperWrapper = this.querySelector('.swiper-wrapper');
+
       if (bestsellers.length <= 4) {
         this.querySelector('.js-slider').classList.add('no-slider-arrows')
       }
@@ -22,28 +23,27 @@ if (!customElements.get('best-sellers')) {
       },
       })
 
-
     const renderProductCard = (product) => {
       let productElement = document.createElement("div");
       const template = `
-      <a href="${product.onlineStoreUrl}" class="product-image-link">
-        <div class="product-card__image-wrapper">
-          <img
-            src="${product.image.url}"
-            alt="${product.title}"
-            width="353"
-            height="353" loading="lazy">
+        <a href="${product.onlineStoreUrl}" class="product-image-link">
+          <div class="product-card__image-wrapper">
+            <img
+              src="${product.image.url}"
+              alt="${product.title}"
+              width="353"
+              height="353" loading="lazy">
+          </div>
+         </a>
+        <div class="product-card__info">
+          <h2 class="product-card__title card__heading card__heading--placeholder h5" id="Product-${product.id}">
+            ${product.title}
+          </h2>
+          <div class="product-card__price">
+            <span><s class="price-item price-item--regular">${product.compareAtPrice}${product.currencyCode}</s></span>
+            <span class="price-item price-item--sale price-item--last">${product.price}${product.currencyCode}</span>
+          </div>
         </div>
-       </a>
-      <div class="product-card__info">
-        <h2 class="product-card__title card__heading card__heading--placeholder h5" id="Product-${product.id}">
-          ${product.title}
-        </h2>
-        <div class="product-card__price">
-          <span><s class="price-item price-item--regular">${product.compareAtPrice}${product.currencyCode}</s></span>
-          <span class="price-item price-item--sale price-item--last">${product.price}${product.currencyCode}</span>
-        </div>
-      </div>
       `;
 
       productElement.classList.add('best-sellers__slide', 'swiper-slide');
@@ -54,9 +54,11 @@ if (!customElements.get('best-sellers')) {
 
     const accessToken = '4d28a2cf220c1d3d602fb95278c54365';
     const collectionTitlesData = document.getElementById('collectionTitles').getAttribute('data-collections');
+
     const replacePolishChars = (str) => {
       const from = "ąćęłńóśźżĄĆĘŁŃÓŚŹŻ";
       const to = "acelnoszzACELNOSZZ";
+
       return str.split('').map((letter) => {
         const index = from.indexOf(letter);
         return index !== -1 ? to[index] : letter;
@@ -69,12 +71,12 @@ if (!customElements.get('best-sellers')) {
     };
 
     const handles = replacePolishChars(collectionTitlesData).split(',').filter(Boolean);
-    console.log('handles ', handles);
+    // console.log('handles ', handles);
     const fetchProductsByHandle = async (handle) => {
       const query = `
         query {
           collectionByHandle(handle: "${handle}"){
-            products(first: 1, sortKey: BEST_SELLING) {
+            products(first: 10, sortKey: BEST_SELLING) {
               edges {
                 node {
                   id
@@ -122,6 +124,7 @@ if (!customElements.get('best-sellers')) {
     // Funkcja do pobrania produktów dla każdego handle
     const fetchAllProducts = async () => {
       const allProducts = [];
+
       for (const handle of handles) {
         const products = await fetchProductsByHandle(handle);
         allProducts.push({ handle, products });
@@ -136,14 +139,11 @@ if (!customElements.get('best-sellers')) {
         allProducts.forEach(({ handle, products }) => {
           products.forEach(({node: product}) => {
             const numericProductId = extractNumericId(product.id);
-            console.log('numericProductId ', numericProductId);
-            console.log('productID ', productID);
+
             if (!displayedProducts[product.id] && numericProductId !== productID) {
-              console.log('displayedProducts[product.id] ', displayedProducts[product.id]);
-              console.log('currentProductId ', productID);
-              console.log('product.id ', product.id);
               bestsellersWrapper.classList.remove('hide');
               const firstVariant = product.variants.edges[0]?.node;
+
               const productData = {
                 id: product.id,
                 title: product.title,
@@ -161,12 +161,12 @@ if (!customElements.get('best-sellers')) {
               displayedProducts[product.id] = true;
             };
           });
-          products.forEach(product => {
-            console.log('handle:', product.handle);
-            console.log('Product ID:', product.node.id);
-            console.log('Title:', product.node.title);
-            console.log('------------------------------------');
-          });
+          // products.forEach(product => {
+          //   console.log('handle:', product.handle);
+          //   console.log('Product ID:', product.node.id);
+          //   console.log('Title:', product.node.title);
+          //   console.log('------------------------------------');
+          // });
         });
       })
       .catch(error => console.error('Error:', error));
@@ -175,4 +175,3 @@ if (!customElements.get('best-sellers')) {
 
   customElements.define('best-sellers', BestSellers)
 }
-

@@ -1,5 +1,7 @@
 .best-sellers {
 	&__wrapper {
+		overflow: hidden;
+		margin: 50px 0;
 		&.hide {
 			opacity: 0;
 		}
