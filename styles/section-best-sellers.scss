@@ -73,8 +73,11 @@ $color--price-compare: #5b5b5b;
     margin: 0 auto;
     padding-left: 15px;
 
-    @media screen and (min-width: 1350px) {
+    @media screen and (min-width: 750px) {
       padding-left: 50px;
+    }
+
+    @media screen and (min-width: 1350px) {
       margin-left: calc((100vw - (var(--page-width) + 16px)) / 2);
     }
 

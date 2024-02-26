@@ -68,9 +68,13 @@
   margin: 0 auto;
   padding-left: 15px;
 }
-@media screen and (min-width: 1350px) {
+@media screen and (min-width: 750px) {
   .best-sellers__slider-wrapper {
     padding-left: 50px;
+  }
+}
+@media screen and (min-width: 1350px) {
+  .best-sellers__slider-wrapper {
     margin-left: calc((100vw - (var(--page-width) + 16px)) / 2);
   }
 }
