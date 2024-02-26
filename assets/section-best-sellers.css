@@ -1,3 +1,7 @@
+:root {
+  --page-width: 1325px;
+}
+
 .best-sellers__wrapper {
   position: relative;
   overflow: hidden;
@@ -5,6 +9,14 @@
 }
 .best-sellers__wrapper.hide {
   opacity: 0;
+}
+.best-sellers__header {
+  margin-bottom: 25px;
+}
+@media screen and (min-width: 750px) {
+  .best-sellers__header {
+    margin-bottom: 52px;
+  }
 }
 .best-sellers__heading {
   display: flex;
@@ -42,21 +54,35 @@
 }
 .best-sellers__title {
   font-weight: 500;
-  font-size: 35px;
-  letter-spacing: -0.7px;
+  font-size: 34px;
+  letter-spacing: -0.8px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 990px) {
+  .best-sellers__title {
+    font-size: 40px;
+  }
 }
 .best-sellers__slider-wrapper {
   margin: 0 auto;
   padding-left: 15px;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1350px) {
   .best-sellers__slider-wrapper {
     padding-left: 50px;
-    margin-left: calc((100vw - 1215px) / 2);
+    margin-left: calc((100vw - (var(--page-width) + 16px)) / 2);
   }
+}
+.best-sellers__slider-wrapper .product-card__link {
+  text-decoration: none;
+}
+.best-sellers__slider-wrapper .product-card__link:hover {
+  text-decoration: underline;
 }
 .best-sellers__slider-wrapper .product-card__info {
   height: 100%;
+  padding: 0;
 }
 .best-sellers__slider-wrapper .product-card__title, .best-sellers__slider-wrapper .product-card__description {
   letter-spacing: -0.7px;
@@ -67,12 +93,30 @@
   margin-top: 34px;
 }
 .best-sellers__slider-wrapper .product-card__description {
-  color: #5B5B5B;
+  color: #5b5b5b;
   font-size: 13px;
-  margin-top: 7px;
+  margin-top: 0;
+}
+.best-sellers__slider-wrapper .product-card__badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+.best-sellers__slider-wrapper .product-card__badge .badge {
+  border-radius: 4px;
+  background-color: #e35249;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
 }
 .best-sellers__slider-wrapper .product-card__price {
-  margin-top: 39px;
+  font-weight: 600;
+  color: #000;
+}
+.best-sellers__slider-wrapper .product-card__price s {
+  color: #5b5b5b;
+  font-weight: 400;
 }
 .best-sellers__slider-wrapper .product-card__image-wrapper img {
   object-fit: cover;
@@ -82,15 +126,21 @@
 .best-sellers__slider {
   overflow: revert;
 }
+.best-sellers__slider .swiper-wrapper {
+  align-items: stretch;
+}
 .best-sellers__slide.swiper-slide {
   width: 252px;
+  height: unset;
+  display: flex;
+  flex-direction: column;
 }
 .best-sellers__slider-arrows {
   min-height: 100px;
   position: absolute;
-  top: calc(50% + 19px);
+  top: calc(50% - 11px);
   transform: translateY(-50%);
-  z-index: 20;
+  z-index: 2;
   left: 0;
   right: 0;
   margin: 0 auto;
